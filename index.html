@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Daniel Chen CV</title>
+    <style>
+        /*
+          STYLE.CSS
+          - Theme: Light White & Black, Minimalist
+          - Font: Times New Roman
+          - Animations: Apple-inspired "reveal on scroll"
+        */
+
+        :root {
+            --text-primary: #111111; /* Black text */
+            --text-secondary: #555555; /* Dark grey for secondary info */
+            --border-color: rgba(0, 0, 0, 0.15);
+            --font-main: "Times New Roman", Times, serif;
+        }
+
+        /* --- 1. BASE & SMOOTH SCROLLING --- */
+        *,
+        *::before,
+        *::after {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: var(--font-main);
+            /* The initial background color is set here */
+            background-color: #faf0e6;
+            /* Added transition for smooth color changes */
+            transition: background-color 0.8s ease;
+            color: var(--text-primary);
+            line-height: 1.8;
+            margin: 0;
+            padding: 80px 40px;
+            -webkit-font-smoothing: antialiased;
+            -moz-osx-font-smoothing: grayscale;
+            overflow-x: hidden; /* Prevents horizontal scrollbars */
+        }
+
+        .container {
+            max-width: 950px; /* Wider to maximize screen width comfortably */
+            margin: 0 auto;
+        }
+
+        /* --- 2. TYPOGRAPHY & STRUCTURE --- */
+        h1, h2, h3, h4 {
+            font-weight: normal; /* Normalizes Times New Roman's default bold */
+            line-height: 1.2;
+            margin: 0;
+        }
+
+        header {
+            text-align: center;
+            margin-bottom: 80px;
+            padding-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        header h1 {
+            font-size: 3.5rem;
+            margin-bottom: 15px;
+        }
+
+        .contact-info {
+            font-size: 1rem;
+            color: var(--text-secondary);
+        }
+
+        .contact-info a {
+            color: var(--text-secondary);
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .contact-info a:hover {
+            color: var(--text-primary);
+        }
+
+        section {
+            margin-bottom: 70px;
+        }
+
+        h2 {
+            font-size: 2rem;
+            margin-bottom: 40px;
+            border-bottom: 1px solid var(--border-color);
+            padding-bottom: 15px;
+        }
+
+        h3 {
+            font-size: 1.3rem;
+            margin-bottom: 5px;
+        }
+        
+        h4 {
+            font-size: 1.1rem;
+            margin-top: 30px;
+            margin-bottom: 20px;
+            font-style: italic;
+            color: var(--text-secondary);
+        }
+
+        .entry {
+            margin-bottom: 40px;
+        }
+        
+        .publication-entry {
+            margin-bottom: 15px;
+        }
+
+        .entry-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: baseline;
+            flex-wrap: wrap;
+            margin-bottom: 8px;
+        }
+
+        .details {
+            color: var(--text-secondary);
+            font-size: 0.95rem;
+            font-style: italic;
+            white-space: nowrap;
+            margin-left: 20px;
+        }
+
+        ul {
+            list-style: none;
+            padding-left: 20px;
+            margin: 15px 0 0;
+        }
+
+        ul li {
+            position: relative;
+            padding-left: 10px;
+            margin-bottom: 10px;
+        }
+
+        ul li::before {
+            content: '—';
+            position: absolute;
+            left: -20px;
+            color: var(--text-secondary);
+        }
+
+        strong {
+            font-style: italic;
+            font-weight: normal; /* Use italics for emphasis instead of bold */
+        }
+        
+        u {
+            text-decoration: none;
+            border-bottom: 1px solid var(--text-secondary);
+        }
+
+        /* --- 3. APPLE-INSPIRED SCROLL ANIMATION --- */
+        .animate-on-scroll {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
+                        transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            will-change: opacity, transform; /* Performance optimization */
+        }
+
+        .animate-on-scroll.is-visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Stagger the animation of items within a visible section for a nicer effect */
+        .is-visible .entry:nth-child(1) { transition-delay: 0.1s; }
+        .is-visible .entry:nth-child(2) { transition-delay: 0.2s; }
+        .is-visible .entry:nth-child(3) { transition-delay: 0.3s; }
+        .is-visible .entry:nth-child(4) { transition-delay: 0.4s; }
+        .is-visible .entry:nth-child(5) { transition-delay: 0.5s; }
+
+
+        /* --- 4. RESPONSIVE DESIGN --- */
+        @media (max-width: 768px) {
+            body {
+                padding: 60px 20px;
+            }
+            header h1 {
+                font-size: 2.8rem;
+            }
+            h2 {
+                font-size: 1.8rem;
+            }
+            .entry-header {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            .details {
+                margin-left: 0;
+                margin-top: 5px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="animate-on-scroll">
+            <h1>Daniel Chen</h1>
+            <p class="contact-info">
+                Medical Student
+            </p>
+        </header>
+
+        <main>
+            <section class="animate-on-scroll" data-color="#faf0e6">
+                <h2>Education</h2>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Kaiser Permanente Bernard J. Tyson School of Medicine | Pasadena, CA</h3>
+                        <div class="details">Expected Graduation 6/2027</div>
+                    </div>
+                    <p>Doctor of Medicine (MD)</p>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>University of Washington | Seattle, WA</h3>
+                        <div class="details">Graduated 6/2022</div>
+                    </div>
+                    <p>Bachelor of Science (BS), Neuroscience <span>&bull;</span> <strong>Magna Cum Laude</strong></p>
+                </div>
+            </section>
+            
+            <section class="animate-on-scroll" data-color="#d8e2dc">
+                <h2>Honors and Awards</h2>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Mary Gates Research Scholarship Recipient | University of Washington, Seattle, WA</h3>
+                        <div class="details">1/2022</div>
+                    </div>
+                    <ul>
+                        <li>Highly competitive scholarship awarded to students engaged in research guided by faculty</li>
+                    </ul>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Dean’s List Scholar | University of Washington, Seattle, WA</h3>
+                        <div class="details">2018-2022</div>
+                    </div>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>United Health Foundation Health Scholar | United Health Foundation</h3>
+                        <div class="details">9/2019</div>
+                    </div>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Kaiser Permanente Health Scholar | Kaiser Permanente Northwest, Portland, OR</h3>
+                        <div class="details">6/2018</div>
+                    </div>
+                </div>
+            </section>
+
+            <section class="animate-on-scroll" data-color="#e3d5ca">
+                <h2>Professional Experience</h2>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Class Board | Kaiser Permanente School of Medicine | Pasadena, CA</h3>
+                        <div class="details">10/2023-Present</div>
+                    </div>
+                    <ul>
+                        <li>Elected by the student body to represent the Class of 2027 to the school administration</li>
+                        <li>Oversee the MD student council, including Honor Council, Well Being Committee, and Equity, Inclusion, and Diversity committee to enhance student experience</li>
+                    </ul>
+                </div>
+                 <div class="entry">
+                    <div class="entry-header">
+                        <h3>AI Curriculum Committee Member | Kaiser Permanente School of Medicine, Pasadena, CA</h3>
+                        <div class="details">9/2025-Current</div>
+                    </div>
+                    <ul>
+                        <li>Defining AI implementation standards for the medical school; helping to craft policies for hospital-side use, training, and ethical competency</li>
+                    </ul>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Organization of Student Representatives | Association of American Medical Colleges</h3>
+                        <div class="details">11/2023-Present</div>
+                    </div>
+                    <ul>
+                        <li>Student representative for the Kaiser Permanente School of Medicine</li>
+                    </ul>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>President | Ophthalmology Interest Group, Kaiser Permanente School of Medicine | Pasadena, CA</h3>
+                        <div class="details">8/2025-Present</div>
+                    </div>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Treasurer | Ophthalmology Interest Group, Kaiser Permanente School of Medicine | Pasadena, CA</h3>
+                        <div class="details">8/2024-2025</div>
+                    </div>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Advisor | AI in Medicine Interest Group, Kaiser Permanente School of Medicine | Pasadena, CA</h3>
+                        <div class="details">8/2024-Present</div>
+                    </div>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Medical Assistant | Northwest Eye Surgeons, Seattle, WA</h3>
+                        <div class="details">3/2022-1/2023</div>
+                    </div>
+                    <ul>
+                        <li>Data entry and chart review for three ongoing clinical trials at the clinic</li>
+                        <li>Scheduling patients and patient education for refractive surgery (SMILE vs LASIK vs PRK)</li>
+                        <li>MA to Dr. Michael Banitt, MD, Dr. Audrey Rostov, MD, and Dr. Shikha Yadav, OD</li>
+                    </ul>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Strategy Intern | Creative Destruction Lab, Seattle, WA</h3>
+                        <div class="details">11/2021-2/2022</div>
+                    </div>
+                     <ul>
+                        <li>Led market research and competitive analysis for 2 early-stage biotech startups, synthesizing findings into GTM plans presented to 20+ mentors and founders, shaping strategic pivots adopted by 2 companies</li>
+                    </ul>
+                </div>
+                <div class="entry">
+                    <div class="entry-header">
+                        <h3>Computer Consultant Lead | Odegaard Undergraduate Library, Seattle, WA</h3>
+                        <div class="details">5/2020-6/2022</div>
+                    </div>
+                     <ul>
+                        <li>Oversaw hiring and training for new staff, new services, and procedures</li>
+                        <li>Provided remote technology support during COVID pandemic and computer support to students, staff, and faculty</li>
+                    </ul>
+                </div>
+                 <div class="entry">
+                    <div class="entry-header">
+                        <h3>Telemedicine Project Management Intern | Permanente Medicine, Portland, OR</h3>
+                        <div class="details">6/2019-8/2019</div>
+                    </div>
+                     <ul>
+                        <li>Drafted business proposal for adoption of point-of-care ultrasound across 6 urgent care sites; findings informed regional rollout discussions</li>
+                        <li>Conducted literature review on telemedicine, creating metrics framework later integrated into regional quality-of-care evaluations</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="animate-on-scroll" data-color="#d6e2e9">
+                <h2>Publications & Presentations</h2>
+                
+                <h4>Published Manuscripts</h4>
+                <div class="publication-entry"><p><b>Chen DX*</b>, Tang K*, Ding L, Chen A, Chen PP, Bojikian KD. (2025) Quantitative Analysis of Retinal Nerve Fiber Layer Thickness Using Spectralis Glaucoma Module Premium Edition and Spectralis Standard Glaucoma Module. <strong>Translational Vision Science & Technology</strong>. </p></div>
+                <div class="publication-entry"><p><b>Chen DX</b>, Modjtahedi BS, Vo AT, Han S, Sangha N. (2025) Visual Outcome Comparison of Intravenous Thrombolysis After Central Retinal Artery Occlusions. <strong>Journal of Stroke and Cerebrovascular Disease</strong>. https://doi.org/10.1016/j.jstrokecerebrovasdis.2025.108472</p></div>
+                <div class="publication-entry"><p><b>Chen DX</b>, Hannah, H, Ding, L, Bojikian, KD, Chen, A. (2025) Associations of Sociodemographic Factors and Social Vulnerability Index on Glaucoma Testing Frequency. <strong>Journal of Glaucoma</strong>. https://doi.org/10.1097/IJG.0000000000002532</p></div>
+                <div class="publication-entry"><p>Moore SG, <b>Chen DX</b>, Sharma M, Hedayi R, Fong D, Modjtahedi BS. (2025) Results of a New Virtual Program for Patients Overdue for Diabetic Retinopathy Evaluation. <strong>Ophthalmology and Therapy</strong>. https://doi.org/10.1007/s40123-025-01136-9</p></div>
+                <div class="publication-entry"><p>Meno M, <b>Chen DX</b>, Pattock AM, Huang GS, (2023) Massive LV Thrombus after STEMI in a Young Man with Factor V Leiden. <strong>CASE</strong>. https://doi.org/10.1016/j.case.2022.12.010</p></div>
+                <div class="publication-entry"><p>Pilo CA, Baffi TR, Kornev AP, Kunkel MT, Malfavon M, Chen D, Rossitto LA, <b>Chen DX</b>, et al. (2022) Mutations in protein kinase cγ promote spinocerebellar ataxia type 14 by impairing kinase autoinhibition. <strong>Science Signaling</strong>. https://doi.org/10.1126/scisignal.abk1147</p></div>
+
+                <h4>Submitted Manuscripts</h4>
+                <div class="publication-entry"><p>Litman K, Ghobadi A, McGary E, Bal KS, <b>Chen DX</b>, Kanter MH. A Multi-Specialty Hybrid Chart Review (E-Biopsy) of Advanced Stage Lung Cancer Patients: An Opportunity to Improve Diagnostic Excellence and Management Through System Improvement</p></div>
+
+                <h4>Manuscripts in Preparation</h4>
+                <div class="publication-entry"><p><b>Chen DX</b>, Zesemayat M, Feng S, Bojikian KD. Eye Care Access Among High-Deductible Health Plans Enrollees Using the National Health Interview Survey</p></div>
+                <div class="publication-entry"><p><b>Chen DX</b>, Modjtahedi BS. Characterizing Unmet Vision Care Needs Using Google Trends</p></div>
+                <div class="publication-entry"><p><b>Chen DX</b>, Li J, Arana I, Lopez V, Chen S, Wu J, Navdeep S, Modjtahedi BS. Long-term neurologic and cardiac risk in patients with diabetes mellitus and incidentally detected retinal emboli.</p></div>
+                <div class="publication-entry"><p>Nocon R, Ryan J, Hodis J, Handren L, Clark D, <b>Chen DX</b>, Rowan N, Sripipatana A. Does Health Center Presence Mitigate the Negative Effects of Increasing Unemployment on Preventable Hospitalizations</p></div>
+                
+                <h4>Podium Presentations</h4>
+                <div class="publication-entry"><p><b>Chen DX</b>, <u>Modjtahedi BS</u>, Vo AT, Han S, Sangha N. Visual Outcome Comparison of Intravenous Thrombolysis After Central Retinal Artery Occlusions. <strong>American Society of Retina Specialists Annual Meeting, Long Beach, California, July 2025</strong>.</p></div>
+                <div class="publication-entry"><p><b><u>Chen DX</u></b>, Tang K, Ding L, Chen A, Chen PP, Bojikian KD. Quantitative Analysis of Retinal Nerve Fiber Layer Thickness Using Spectralis Glaucoma Module Premium Edition and Spectralis Standard Glaucoma Module. <strong>University of Washington Department of Ophthalmology Medical Student Research Day, Seattle, Washington, June 2025</strong>.</p></div>
+                <div class="publication-entry"><p><u>Deng IY</u>, Nguyen NH, Bowyer KR, <b>Chen DX</b>, Celie K, Lin A, Larson A, Chu MW. Head and Neck Free Flap Volume Changes After Radiation Treatment. <strong>American Society for Reconstructive Microsurgery Annual Meeting, Big Island, Hawaii, January 2025</strong>.</p></div>
+                <div class="publication-entry"><p><b><u>Chen DX</u></b>. Missense Mutations in <u>PKCγ</u> Causing Abnormalities in Cerebellar Purkinje Cells and Dendrites in SCA 14 Mice. <strong>University of Washington Undergraduate Research Symposium Seattle, WA, May 2022</strong>.</p></div>
+                <div class="publication-entry"><p><b><u>Chen DX</u></b>. Using Whole Exome Sequencing to Identify a Causative Gene Mutation in Families with Charcot-Marie-Tooth Disorder and Hereditary Neuralgic Amyotrophy. <strong>University of Washington Undergraduate Research Symposium, Seattle, WA, May 2021</strong>.</p></div>
+
+                <h4>Poster Presentations</h4>
+                <div class="publication-entry"><p><b><u>Chen DX</u></b>, Arana I, Wu J, Sangha N, Modjtahedi BS. Long-term Neurologic and Cardiac Risk in Patients with Diabetes Mellitus and Incidentally Detected Retinal Emboli. <strong>American Society of Retina Specialists Annual Meeting, Long Beach, California, July 2025</strong>.</p></div>
+                <div class="publication-entry"><p><b><u>Chen DX</u></b>, Modjtahedi BS. Google Trends Analysis of Demand for Vision Care. <strong>Kaiser Permanente Los Angeles Medical Center Annual Research Day, Los Angeles, CA, May 2025</strong>.</p></div>
+                <div class="publication-entry"><p><u>Alkalai J</u>, <b>Chen DX</b>, Kaw RA, Au M, Yuen G, Tom LR, Gould MK. KP SCAL South Bay E-Visit Pilot for Lung Cancer Screening. <strong>Kaiser Permanente Los Angeles Medical Center Annual Research Day, Los Angeles, CA, May 2025</strong>.</p></div>
+                <div class="publication-entry"><p><b><u>Chen DX</u></b>, Navdeep S, Yi D, Yan R, Modjtahedi BS. Temporal Trends in Systemic Imaging Following Retinal Artery Occlusions. <strong>The Association for Research in Vision and Ophthalmology Annual Meeting, Salt Lake City, UT, May 2025</strong>.</p></div>
+                <div class="publication-entry"><p><u>Tang K</u>, <b>Chen DX</b>, Chen A, Chen PP, Bojikian KD. Quantitative Comparison of Spectralis® Glaucoma Module Premium Edition and Spectralis® OCT2 modules for Retinal Never Fiber Layer Thickness Measurements in Glaucoma. <strong>The Association for Research in Vision and Ophthalmology Annual Meeting, Salt Lake City, UT, May 2025</strong>.</p></div>
+                <div class="publication-entry"><p><b><u>Chen DX</u></b>, Hannah H, Ding L, Bojikian KD, Chen A. Associations of Sociodemographic Factors and Social Vulnerability Index on Glaucoma Testing Frequency. <strong>American Academy of Ophthalmology Annual Meeting, Chicago, IL, October 2024</strong>.</p></div>
+
+                <h4>Video Publications</h4>
+                <div class="publication-entry"><p><b><u>Chen DX</u></b>, & Zhang, Y (2024, July 10). <i>Use of endolaser-assisted treatment</i>. <strong>Eyetube</strong>.</p></div>
+            </section>
+            
+            <section class="animate-on-scroll" data-color="#dcd0c0">
+                <h2>Leadership & Community Service</h2>
+                 <div class="entry">
+                    <h3>Volunteer, Orange County Eye Project Free Clinic</h3>
+                    <ul>
+                        <li>Collecting vitals, visual acuity, and imaging for patients arriving at ophthalmology consult</li>
+                    </ul>
+                </div>
+                <div class="entry">
+                    <h3>Instructor, Chinese Information and Service Center</h3>
+                    <ul>
+                        <li>Provided ESL tutoring to an elderly class, teaching them basic English grammar and sentence structure</li>
+                        <li>Helped develop a teaching curriculum for weekly classes</li>
+                    </ul>
+                </div>
+                 <div class="entry">
+                    <h3>Co-Founder, Naireative</h3>
+                    <ul>
+                        <li>Created a documentation tool to streamline clinician documentation; led a 10-person team across design/engineering to deliver a high-fidelity prototype tested by 5+ clinicians</li>
+                    </ul>
+                </div>
+                <div class="entry">
+                    <h3>Scholarship Coordinator, Chinese Student Association</h3>
+                    <ul>
+                        <li>Launched CSA UW’s first-ever community scholarship for UW students of Chinese heritage</li>
+                        <li>Sourced financial sponsor and oversaw committee for scholar selection process</li>
+                    </ul>
+                </div>
+                <div class="entry">
+                    <h3>Outreach Director, Lavin Entrepreneurship Program</h3>
+                    <p>Buerk Center for Entrepreneurship, Seattle, WA</p>
+                    <ul>
+                        <li>Secured 15+ founder/investor speakers for events; coordinated seed-funding competitions judged by Seattle VC community; strengthening Lavin’s founder-investor pipeline</li>
+                    </ul>
+                </div>
+            </section>
+            
+            <section class="animate-on-scroll" data-color="#e9edc9">
+                <h2>Professional Associations</h2>
+                <div class="entry"><p>American Medical Student Association (AMSA)</p></div>
+                <div class="entry"><p>American Academy of Ophthalmology (AAO)</p></div>
+            </section>
+            
+            <section class="animate-on-scroll" data-color="#faebd7">
+                <h2>Languages</h2>
+                <div class="entry"><p>English (native proficiency)</p></div>
+                <div class="entry"><p>Mandarin Chinese (native proficiency)</p></div>
+            </section>
+            
+            <section class="animate-on-scroll" data-color="#e8d5d5">
+                <h2>Personal Interests</h2>
+                <div class="entry"><p>Videographer: <a href="https://www.youtube.com/channel/UC3nms8Awwic6X_QGjcEarNg">https://www.youtube.com/channel/UC3nms8Awwic6X_QGjcEarNg</a></p></div>
+                <div class="entry"><p>Coffee: ask me about my drip coffee technique</p></div>
+                <div class="entry"><p>Football: center midfield- FC Barcelona enthusiast</p></div>
+            </section>
+
+        </main>
+    </div>
+
+    <script>
+        // Observer for fade-in animations
+        const animationObserver = new IntersectionObserver((entries) => {
+            entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('is-visible');
+                }
+            });
+        }, {
+            threshold: 0.1 // Triggers when 10% of the element is visible
+        });
+
+        const elementsToAnimate = document.querySelectorAll('.animate-on-scroll');
+        elementsToAnimate.forEach((el) => animationObserver.observe(el));
+
+        // Observer for background color changes
+        const colorObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                // When a section is more than 40% visible and scrolling into view...
+                if (entry.isIntersecting && entry.intersectionRatio > 0.4) {
+                    const newColor = entry.target.dataset.color;
+                    document.body.style.backgroundColor = newColor;
+                }
+            });
+        }, {
+            threshold: [0.4, 0.8] // Trigger at 40% and 80% visibility
+        });
+
+        const sectionsWithColor = document.querySelectorAll('section[data-color]');
+        sectionsWithColor.forEach(section => colorObserver.observe(section));
+    </script>
+</body>
+</html>
+
