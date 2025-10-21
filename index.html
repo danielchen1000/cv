@@ -9,12 +9,13 @@
           STYLE.CSS
           - Theme: Light White & Black, Minimalist
           - Font: Times New Roman
-          - Animations: Apple-inspired "reveal on scroll"
+          - Animations: Apple-inspired "reveal on scroll" with symbols
         */
 
         :root {
-            --text-primary: #111111; /* Black text */
-            --text-secondary: #555555; /* Dark grey for secondary info */
+            --background-color: #f8f8f8;
+            --text-primary: #111111;
+            --text-secondary: #555555;
             --border-color: rgba(0, 0, 0, 0.15);
             --font-main: "Times New Roman", Times, serif;
         }
@@ -32,9 +33,7 @@
 
         body {
             font-family: var(--font-main);
-            /* The initial background color is set here */
             background-color: #faf0e6;
-            /* Added transition for smooth color changes */
             transition: background-color 0.8s ease;
             color: var(--text-primary);
             line-height: 1.8;
@@ -42,17 +41,17 @@
             padding: 80px 40px;
             -webkit-font-smoothing: antialiased;
             -moz-osx-font-smoothing: grayscale;
-            overflow-x: hidden; /* Prevents horizontal scrollbars */
+            overflow-x: hidden;
         }
 
         .container {
-            max-width: 950px; /* Wider to maximize screen width comfortably */
+            max-width: 950px;
             margin: 0 auto;
         }
 
         /* --- 2. TYPOGRAPHY & STRUCTURE --- */
         h1, h2, h3, h4 {
-            font-weight: normal; /* Normalizes Times New Roman's default bold */
+            font-weight: normal;
             line-height: 1.2;
             margin: 0;
         }
@@ -93,6 +92,7 @@
             margin-bottom: 40px;
             border-bottom: 1px solid var(--border-color);
             padding-bottom: 15px;
+            position: relative; /* Context for the absolute symbol */
         }
 
         h3 {
@@ -153,7 +153,7 @@
 
         strong {
             font-style: italic;
-            font-weight: normal; /* Use italics for emphasis instead of bold */
+            font-weight: normal;
         }
         
         u {
@@ -161,13 +161,40 @@
             border-bottom: 1px solid var(--text-secondary);
         }
 
-        /* --- 3. APPLE-INSPIRED SCROLL ANIMATION --- */
+        /* --- 3. SECTION SYMBOLS --- */
+        .section-symbol {
+            position: absolute;
+            top: 5px;
+            font-size: 2.5rem;
+            opacity: 0;
+            transform: scale(0.5) rotate(-15deg);
+            transition: opacity 0.6s ease, transform 0.6s ease;
+            transition-delay: 0.4s; /* Delay to appear after the section title */
+            z-index: -1;
+        }
+
+        /* Alternating sides for symbols */
+        section:nth-of-type(odd) .section-symbol {
+            left: -100px;
+        }
+
+        section:nth-of-type(even) .section-symbol {
+            right: -100px;
+        }
+        
+        .is-visible .section-symbol {
+            opacity: 0.3;
+            transform: scale(1) rotate(0deg);
+        }
+
+
+        /* --- 4. APPLE-INSPIRED SCROLL ANIMATION --- */
         .animate-on-scroll {
             opacity: 0;
             transform: translateY(40px);
             transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94),
                         transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94);
-            will-change: opacity, transform; /* Performance optimization */
+            will-change: opacity, transform;
         }
 
         .animate-on-scroll.is-visible {
@@ -175,7 +202,6 @@
             transform: translateY(0);
         }
 
-        /* Stagger the animation of items within a visible section for a nicer effect */
         .is-visible .entry:nth-child(1) { transition-delay: 0.1s; }
         .is-visible .entry:nth-child(2) { transition-delay: 0.2s; }
         .is-visible .entry:nth-child(3) { transition-delay: 0.3s; }
@@ -183,7 +209,13 @@
         .is-visible .entry:nth-child(5) { transition-delay: 0.5s; }
 
 
-        /* --- 4. RESPONSIVE DESIGN --- */
+        /* --- 5. RESPONSIVE DESIGN --- */
+        @media (max-width: 1200px) {
+             /* On smaller screens, hide the symbols to prevent overlap */
+            .section-symbol {
+                display: none;
+            }
+        }
         @media (max-width: 768px) {
             body {
                 padding: 60px 20px;
@@ -216,7 +248,7 @@
 
         <main>
             <section class="animate-on-scroll" data-color="#faf0e6">
-                <h2>Education</h2>
+                <h2><span class="section-symbol">🎓</span>Education</h2>
                 <div class="entry">
                     <div class="entry-header">
                         <h3>Kaiser Permanente Bernard J. Tyson School of Medicine | Pasadena, CA</h3>
@@ -234,7 +266,7 @@
             </section>
             
             <section class="animate-on-scroll" data-color="#d8e2dc">
-                <h2>Honors and Awards</h2>
+                <h2><span class="section-symbol">🏆</span>Honors and Awards</h2>
                 <div class="entry">
                     <div class="entry-header">
                         <h3>Mary Gates Research Scholarship Recipient | University of Washington, Seattle, WA</h3>
@@ -265,7 +297,7 @@
             </section>
 
             <section class="animate-on-scroll" data-color="#e3d5ca">
-                <h2>Professional Experience</h2>
+                <h2><span class="section-symbol">💼</span>Professional Experience</h2>
                 <div class="entry">
                     <div class="entry-header">
                         <h3>Class Board | Kaiser Permanente School of Medicine | Pasadena, CA</h3>
@@ -355,7 +387,7 @@
             </section>
             
             <section class="animate-on-scroll" data-color="#d6e2e9">
-                <h2>Publications & Presentations</h2>
+                <h2><span class="section-symbol">📄</span>Publications & Presentations</h2>
                 
                 <h4>Published Manuscripts</h4>
                 <div class="publication-entry"><p><b>Chen DX*</b>, Tang K*, Ding L, Chen A, Chen PP, Bojikian KD. (2025) Quantitative Analysis of Retinal Nerve Fiber Layer Thickness Using Spectralis Glaucoma Module Premium Edition and Spectralis Standard Glaucoma Module. <strong>Translational Vision Science & Technology</strong>. </p></div>
@@ -375,7 +407,7 @@
                 <div class="publication-entry"><p>Nocon R, Ryan J, Hodis J, Handren L, Clark D, <b>Chen DX</b>, Rowan N, Sripipatana A. Does Health Center Presence Mitigate the Negative Effects of Increasing Unemployment on Preventable Hospitalizations</p></div>
                 
                 <h4>Podium Presentations</h4>
-                <div class="publication-entry"><p><b>Chen DX</b>, <u>Modjtahedi BS</u>, Vo AT, Han S, Sangha N. Visual Outcome Comparison of Intravenous Thrombolysis After Central Retinal Artery Occlusions. <strong>American Society of Retina Specialists Annual Meeting, Long Beach, California, July 2025</strong>.</p></div>
+                <div class="publication-entry"><p><b><u>Chen DX</u></b>, <u>Modjtahedi BS</u>, Vo AT, Han S, Sangha N. Visual Outcome Comparison of Intravenous Thrombolysis After Central Retinal Artery Occlusions. <strong>American Society of Retina Specialists Annual Meeting, Long Beach, California, July 2025</strong>.</p></div>
                 <div class="publication-entry"><p><b><u>Chen DX</u></b>, Tang K, Ding L, Chen A, Chen PP, Bojikian KD. Quantitative Analysis of Retinal Nerve Fiber Layer Thickness Using Spectralis Glaucoma Module Premium Edition and Spectralis Standard Glaucoma Module. <strong>University of Washington Department of Ophthalmology Medical Student Research Day, Seattle, Washington, June 2025</strong>.</p></div>
                 <div class="publication-entry"><p><u>Deng IY</u>, Nguyen NH, Bowyer KR, <b>Chen DX</b>, Celie K, Lin A, Larson A, Chu MW. Head and Neck Free Flap Volume Changes After Radiation Treatment. <strong>American Society for Reconstructive Microsurgery Annual Meeting, Big Island, Hawaii, January 2025</strong>.</p></div>
                 <div class="publication-entry"><p><b><u>Chen DX</u></b>. Missense Mutations in <u>PKCγ</u> Causing Abnormalities in Cerebellar Purkinje Cells and Dendrites in SCA 14 Mice. <strong>University of Washington Undergraduate Research Symposium Seattle, WA, May 2022</strong>.</p></div>
@@ -394,7 +426,7 @@
             </section>
             
             <section class="animate-on-scroll" data-color="#dcd0c0">
-                <h2>Leadership & Community Service</h2>
+                <h2><span class="section-symbol">🤝</span>Leadership & Community Service</h2>
                  <div class="entry">
                     <h3>Volunteer, Orange County Eye Project Free Clinic</h3>
                     <ul>
@@ -431,19 +463,19 @@
             </section>
             
             <section class="animate-on-scroll" data-color="#e9edc9">
-                <h2>Professional Associations</h2>
+                <h2><span class="section-symbol">🏛️</span>Professional Associations</h2>
                 <div class="entry"><p>American Medical Student Association (AMSA)</p></div>
                 <div class="entry"><p>American Academy of Ophthalmology (AAO)</p></div>
             </section>
             
             <section class="animate-on-scroll" data-color="#faebd7">
-                <h2>Languages</h2>
+                <h2><span class="section-symbol">🌐</span>Languages</h2>
                 <div class="entry"><p>English (native proficiency)</p></div>
                 <div class="entry"><p>Mandarin Chinese (native proficiency)</p></div>
             </section>
             
             <section class="animate-on-scroll" data-color="#e8d5d5">
-                <h2>Personal Interests</h2>
+                <h2><span class="section-symbol">✨</span>Personal Interests</h2>
                 <div class="entry"><p>Videographer: <a href="https://www.youtube.com/channel/UC3nms8Awwic6X_QGjcEarNg">https://www.youtube.com/channel/UC3nms8Awwic6X_QGjcEarNg</a></p></div>
                 <div class="entry"><p>Coffee: ask me about my drip coffee technique</p></div>
                 <div class="entry"><p>Football: center midfield- FC Barcelona enthusiast</p></div>
